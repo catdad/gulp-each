@@ -4,11 +4,32 @@
   "description": "A for each that provides the raw file content.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test.js",
+    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha -- test.js"
   },
   "author": "Kiril Vatev <vatev.1@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "through2": "^2.0.0"
-  }
+    "event-stream": "^3.3.1"
+  },
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "codeclimate-test-reporter": "^0.1.0",
+    "istanbul": "^0.3.19",
+    "mocha": "^2.3.0",
+    "vinyl": "^0.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/catdad/gulp-each.git"
+  },
+  "bugs": {
+    "url": "https://github.com/catdad/gulp-each/issues"
+  },
+  "homepage": "https://github.com/catdad/gulp-each",
+  "keywords": [
+    "gulpplugin",
+    "foreach",
+    "each"
+  ]
 }

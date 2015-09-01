@@ -44,3 +44,4 @@ Temporary Items
 
 # Node files
 node_modules/
+coverage/
