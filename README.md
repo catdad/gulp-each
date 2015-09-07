@@ -50,3 +50,5 @@ Most other for-each implementations for Gulp expose the stream (of buffer) objec
             })
             .pipe(gulp.dest('output'));
     });
+    
+_Note: it's worth saying that this implementation of for-each is most valuable when working with text files. It may not function as expected when working with binary files._
