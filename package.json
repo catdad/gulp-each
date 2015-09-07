@@ -1,6 +1,6 @@
 {
   "name": "gulp-each",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "A for each that provides the raw file content.",
   "main": "index.js",
   "scripts": {
