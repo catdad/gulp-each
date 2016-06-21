@@ -29,26 +29,45 @@ Most other for-each implementations for Gulp expose the stream (of buffer) objec
 
 ## Download
 
-    npm install gulp-each
-    
+```bash
+npm install gulp-each
+```
+
 ## Usage
 
-    var each = require('gulp-each');
-    
-    gulp.task('mytask', function() {
-        gulp.src('*.js')
-            .pipe(each(function(content, file, callback) {
-                // content is a string containing the code
-                // do with it as you'd like
-                var newContent = '// my comment\n' + content;
-                
-                // file is the original Vinyl file object
-                
-                // return the new content using the callback
-                // the first argument is an error, if you encounter one
-                callback(null, newContent);
-            })
-            .pipe(gulp.dest('output'));
-    });
-    
-_Note: it's worth saying that this implementation of for-each is most valuable when working with text files. It may not function as expected when working with binary files._
+```javascript
+var each = require('gulp-each');
+
+gulp.task('mytask', function() {
+    gulp.src('*.js')
+        .pipe(each(function(content, file, callback) {
+            // content is a string containing the code
+            // do with it as you'd like
+            var newContent = '// my comment\n' + content;
+
+            // file is the original Vinyl file object
+
+            // return the new content using the callback
+            // the first argument is an error, if you encounter one
+            callback(null, newContent);
+        })
+        .pipe(gulp.dest('output'));
+});
+```
+
+By default, `gulp-each` will assume that you are working with text files and use `utf8` as the encoding, returning a string as the `content` variable. At times, that will not be true. If you want to work with binary files, you can provide `'buffer'` as the second parameter:
+
+```javascript
+gulp.task('mytask', function() {
+    gulp.src('*.png')
+        .pipe(each(function(content, file, callback) {
+            // content is a buffer containing the image
+            var newConent = transformTheImageBuffer(content);
+
+            // return the new content using the callback
+            // the first argument is an error, if you encounter one
+            callback(null, newContent);
+        }, 'buffer')
+        .pipe(gulp.dest('output'));
+});
+```
