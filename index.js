@@ -3,7 +3,29 @@
 var path = require('path');
 var es = require('event-stream');
 
-function each(iterator, context) {
+var encodings = ['utf8', 'utf-8', 'buffer'];
+var defaultEnc = 'utf8';
+
+function castData(data, enc) {
+    var isBuffer = Buffer.isBuffer(data);
+    
+    if (enc === 'buffer') {
+        return isBuffer ? data : (new Buffer(data));
+    } else {
+        return isBuffer ? data.toString(enc) : data;
+    }
+}
+
+function each(iterator, enc, context) {
+    if (enc && typeof enc === 'string') {
+        enc = encodings.indexOf(enc) > -1 ? enc : defaultEnc;
+    } else if (enc !== undefined) {
+        context = enc;
+        enc = defaultEnc;
+    } else {
+        enc = defaultEnc;
+    }
+    
     var doEach = function(file, callback) {
         // continue if the file is null
         if (file.isNull()) {
@@ -28,10 +50,11 @@ function each(iterator, context) {
         
         if (file.isStream()) {
             file.contents.pipe(es.wait(function(err, data) {
+                data = castData(data, enc);
                 iteratorFunc(data, file, cb);
             }));
         } else if (file.isBuffer()) {
-            content = file.contents.toString('utf8');
+            content = castData(file.contents, enc);
             iteratorFunc(content, file, cb);
         } else {
             // not sure what else it could be, but just deal with it

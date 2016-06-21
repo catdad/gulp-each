@@ -56,6 +56,19 @@ describe('Buffers', function() {
         source.write(input());
         source.end();
     });
+    
+    it('can output a buffer in the iterator function', function(done) {
+        var source = each(function(content, file, cb) {
+            expect(content).to.be.instanceOf(Buffer);
+            expect(content.toString()).to.equal(fakeData);
+            cb(null, content);
+            
+            done();
+        }, 'buffer');
+        
+        source.write(input());
+        source.end();
+    });
 });
 
 describe('Streams', function() {
@@ -79,6 +92,19 @@ describe('Streams', function() {
             
             done();
         });
+        
+        source.write(input());
+        source.end();
+    });
+    
+    it('can output a buffer in the iterator function', function(done) {
+        var source = each(function(content, file, cb) {
+            expect(content).to.be.instanceOf(Buffer);
+            expect(content.toString()).to.equal(fakeData);
+            cb(null, content);
+            
+            done();
+        }, 'buffer');
         
         source.write(input());
         source.end();
