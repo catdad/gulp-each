@@ -1,25 +1,35 @@
 # gulp-each
 
-[![Build][1]][2] [![Test Coverage][3]][4] [![Code Climate][5]][6] [![Downloads][7]][8] [![Version][9]][8] [![ISC License][10]][11] [![Analytics][12]][13]
+[![Build][1]][2]
+[![Test Coverage][3]][4]
+[![Code Climate][5]][6]
+[![Downloads][7]][8]
+[![Version][9]][8]
+[![Dependency Status][10]][11]
+[![ISC License][12]][13]
+[![Analytics][14]][15]
 
-[1]: https://img.shields.io/travis/catdad/gulp-each/master.svg?style=flat-square
+[1]: https://travis-ci.org/catdad/gulp-each.svg?branch=master
 [2]: https://travis-ci.org/catdad/gulp-each
 
-[3]: https://img.shields.io/codeclimate/coverage/github/catdad/gulp-each.svg?style=flat-square
+[3]: https://codeclimate.com/github/catdad/gulp-each/badges/coverage.svg
 [4]: https://codeclimate.com/github/catdad/gulp-each/coverage
 
-[5]: https://img.shields.io/codeclimate/github/catdad/gulp-each.svg?style=flat-square
+[5]: https://codeclimate.com/github/catdad/gulp-each/badges/gpa.svg
 [6]: https://codeclimate.com/github/catdad/gulp-each
 
-[7]: https://img.shields.io/npm/dm/gulp-each.svg?style=flat-square
+[7]: https://img.shields.io/npm/dm/gulp-each.svg
 [8]: https://www.npmjs.com/package/gulp-each
-[9]: https://img.shields.io/npm/v/gulp-each.svg?style=flat-square
+[9]: https://img.shields.io/npm/v/gulp-each.svg
 
-[10]: https://img.shields.io/npm/l/gulp-each.svg?style=flat-square
-[11]: http://opensource.org/licenses/ISC
+[10]: https://david-dm.org/catdad/gulp-each.svg
+[11]: https://david-dm.org/catdad/gulp-each
 
-[12]: https://ga-beacon.appspot.com/UA-17159207-7/gulp-each/readme?flat
-[13]: https://github.com/igrigorik/ga-beacon
+[12]: https://img.shields.io/npm/l/gulp-each.svg
+[13]: http://opensource.org/licenses/ISC
+
+[14]: https://ga-beacon.appspot.com/UA-17159207-7/gulp-each/readme
+[15]: https://github.com/igrigorik/ga-beacon
 
 A for-each for Gulp that exposes the actual content of the file.
 
