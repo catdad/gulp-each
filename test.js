@@ -7,6 +7,7 @@ var expect = chai.expect;
 
 var File = require('vinyl');
 var es = require('event-stream');
+var through = require('through2');
 
 var each = require('./');
 
@@ -18,7 +19,7 @@ describe('Buffers', function() {
     beforeEach(function() {
         input = function() {
             return new File({
-                contents: new Buffer(fakeData), //es.readArray([fakeData]),
+                contents: new Buffer(fakeData),
                 path: 'file.ext',
                 base: __dirname
             });
@@ -28,12 +29,15 @@ describe('Buffers', function() {
     it('gets called once per file', function(done) {
         var count = 0;
 
-        var source = each(function(content, file, cb) {
+        var source = through.obj();
+
+        source.pipe(each(function(content, file, cb) {
             count++;
             cb(null, content);
-        });
-
-        source.on('end', done);
+        }))
+            .on('end', done)
+            .on('error', done)
+            .on('data', function () {});
 
         source.write(input());
 
@@ -117,7 +121,7 @@ describe('general', function() {
     beforeEach(function() {
         input = function() {
             return new File({
-                contents: new Buffer(fakeData), //es.readArray([fakeData]),
+                contents: new Buffer(fakeData),
                 path: 'file.ext',
                 base: __dirname
             });

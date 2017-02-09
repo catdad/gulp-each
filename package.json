@@ -10,13 +10,15 @@
   "author": "Kiril Vatev <vatev.1@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "event-stream": "^3.3.1"
+    "event-stream": "^3.3.1",
+    "read-vinyl-file-stream": "^1.2.0"
   },
   "devDependencies": {
     "chai": "^3.2.0",
     "codeclimate-test-reporter": "^0.1.0",
     "istanbul": "^0.4.4",
     "mocha": "^3.1.0",
+    "through2": "^2.0.3",
     "vinyl": "^0.5.1"
   },
   "repository": {
