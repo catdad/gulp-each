@@ -49,7 +49,7 @@ npm install gulp-each
 var each = require('gulp-each');
 
 gulp.task('mytask', function() {
-    gulp.src('*.js')
+    return gulp.src('*.js')
         .pipe(each(function(content, file, callback) {
             // content is a string containing the code
             // do with it as you'd like
@@ -69,7 +69,7 @@ By default, `gulp-each` will assume that you are working with text files and use
 
 ```javascript
 gulp.task('mytask', function() {
-    gulp.src('*.png')
+    return gulp.src('*.png')
         .pipe(each(function(content, file, callback) {
             // content is a buffer containing the image
             var newConent = transformTheImageBuffer(content);
