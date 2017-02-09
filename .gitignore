@@ -20,10 +20,7 @@ $RECYCLE.BIN/
 # =========================
 # Operating System Files
 # =========================
-
 # OSX
-# =========================
-
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -42,6 +39,12 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
-# Node files
+# Node stuff
 node_modules/
 coverage/
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.TemporaryItems
+.VolumeIcon.icns
