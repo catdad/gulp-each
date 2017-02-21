@@ -60,7 +60,7 @@ gulp.task('mytask', function() {
             // return the new content using the callback
             // the first argument is an error, if you encounter one
             callback(null, newContent);
-        })
+        }))
         .pipe(gulp.dest('output'));
 });
 ```
@@ -77,7 +77,7 @@ gulp.task('mytask', function() {
             // return the new content using the callback
             // the first argument is an error, if you encounter one
             callback(null, newContent);
-        }, 'buffer')
+        }, 'buffer'))
         .pipe(gulp.dest('output'));
 });
 ```
