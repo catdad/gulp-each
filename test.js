@@ -13,15 +13,38 @@ var each = require('./');
 
 var fakeData = 'llama';
 
+function fileBuffer(opts) {
+    opts = opts || {};
+
+    return new File({
+        contents: new Buffer(opts.content || 'fake file'),
+        path: opts.path || Math.random().toString(36).slice(2) + '.txt',
+        base: __dirname
+    });
+}
+
+function inputStream(dataArr) {
+    var input = through.obj();
+
+    setImmediate(function () {
+        dataArr.forEach(function (file) {
+            input.push(file);
+        });
+
+        input.end();
+    });
+
+    return input;
+}
+
 describe('Buffers', function() {
     var input;
 
     beforeEach(function() {
         input = function() {
-            return new File({
-                contents: new Buffer(fakeData),
-                path: 'file.ext',
-                base: __dirname
+            return new fileBuffer({
+                content: fakeData,
+                path: 'file.ext'
             });
         };
     });
@@ -120,10 +143,9 @@ describe('general', function() {
 
     beforeEach(function() {
         input = function() {
-            return new File({
-                contents: new Buffer(fakeData),
-                path: 'file.ext',
-                base: __dirname
+            return new fileBuffer({
+                content: fakeData,
+                path: 'file.ext'
             });
         };
     });
@@ -139,5 +161,29 @@ describe('general', function() {
 
         source.write(input());
         source.end();
+    });
+
+    // this test simulates a gulp task, to make sure this
+    // module is compatible in a pipeline
+    it('writes vinyl files as the output', function (done) {
+        var files = [fileBuffer(), fileBuffer(), fileBuffer()];
+        var count = 0;
+
+        inputStream(files)
+            .pipe(each(function(content, file, cb) {
+                cb(null, content);
+            }))
+            .on('data', function onFile(file) {
+                expect(file).to.be.instanceOf(File);
+                expect(file).to.have.property('contents');
+
+                count += 1;
+            })
+            .on('error', done)
+            .on('end', function () {
+                expect(count).to.equal(files.length);
+
+                done();
+            });
     });
 });
