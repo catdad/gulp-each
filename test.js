@@ -42,10 +42,9 @@ describe('Buffers', function() {
 
     beforeEach(function() {
         input = function() {
-            return new File({
-                contents: new Buffer(fakeData),
-                path: 'file.ext',
-                base: __dirname
+            return new fileBuffer({
+                content: fakeData,
+                path: 'file.ext'
             });
         };
     });
@@ -144,10 +143,9 @@ describe('general', function() {
 
     beforeEach(function() {
         input = function() {
-            return new File({
-                contents: new Buffer(fakeData),
-                path: 'file.ext',
-                base: __dirname
+            return new fileBuffer({
+                content: fakeData,
+                path: 'file.ext'
             });
         };
     });
