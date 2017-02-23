@@ -10,7 +10,7 @@
   "author": "Kiril Vatev <vatev.1@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "read-vinyl-file-stream": "^1.2.0"
+    "read-vinyl-file-stream": "^2.0.2"
   },
   "devDependencies": {
     "chai": "^3.2.0",
